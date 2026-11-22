@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LMS Login</title>
+    <!-- Professional Icons ke liye -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            
+            <div class="login-header">
+                <div class="logo-circle">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2>Welcome Back</h2>
+                <p>Please login to your LMS account</p>
+            </div>
+
+            <form action="/" method="POST">
+                <!-- Email Field -->
+                <div class="input-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="input-group">
+                    <label>Password <span class="required">*</span></label>
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-options">
+                    <label class="remember-me"><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn-primary">
+                    Login <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

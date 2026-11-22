@@ -1,0 +1,271 @@
+/* --- Modern LMS Design --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* =========================================
+   LOGIN PAGE STYLES (Professional Look)
+   ========================================= */
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Premium Gradient Background */
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #38bdf8 100%);
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Glass Effect */
+    padding: 45px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Top Circle Logo */
+.logo-circle {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(to right, #0284c7, #38bdf8);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+.login-header h2 {
+    color: #0f172a;
+    font-size: 24px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.login-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #334155;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Red Asterisk (*) */
+.required {
+    color: #ef4444;
+    margin-left: 3px;
+    font-size: 16px;
+}
+
+/* Input with Icons */
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-wrapper i {
+    position: absolute;
+    left: 15px;
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.input-icon-wrapper input {
+    width: 100%;
+    padding: 13px 15px 13px 45px; /* Space for icon */
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.input-icon-wrapper input:focus {
+    border-color: #38bdf8;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    outline: none;
+}
+
+/* Remember me & Forgot Password */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.form-options a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #0284c7, #38bdf8);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
+}
+
+/* =========================================
+   DASHBOARD & OTHER PAGES STYLES
+   ========================================= */
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #1e293b;
+    color: white;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #38bdf8;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.sidebar a {
+    display: block;
+    color: #cbd5e1;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #334155;
+    color: white;
+    border-left: 4px solid #38bdf8;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+}
+
+h1 {
+    color: #1e293b;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    flex: 1;
+    min-width: 250px;
+    border-top: 5px solid #38bdf8;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background-color: #1e293b;
+    color: white;
+    font-weight: 500;
+}

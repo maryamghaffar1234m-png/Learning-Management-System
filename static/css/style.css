@@ -1,4 +1,6 @@
-/* --- Modern LMS Design --- */
+/* =========================================
+   GLOBAL STYLES & RESET
+   ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
@@ -9,177 +11,20 @@
 }
 
 body {
-    background-color: #f0f2f5;
-    color: #333;
-}
-
-/* =========================================
-   LOGIN PAGE STYLES (Professional Look)
-   ========================================= */
-
-.login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: #f4f7f6;
+    display: flex; /* Yeh layout ko left-right karta hai */
     min-height: 100vh;
-    /* Premium Gradient Background */
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #38bdf8 100%);
-}
-
-.login-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px); /* Glass Effect */
-    padding: 45px 40px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 420px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.login-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* Top Circle Logo */
-.logo-circle {
-    width: 65px;
-    height: 65px;
-    background: linear-gradient(to right, #0284c7, #38bdf8);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    margin: 0 auto 15px auto;
-    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
-}
-
-.login-header h2 {
-    color: #0f172a;
-    font-size: 24px;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.login-header p {
-    color: #64748b;
-    font-size: 14px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #334155;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-/* Red Asterisk (*) */
-.required {
-    color: #ef4444;
-    margin-left: 3px;
-    font-size: 16px;
-}
-
-/* Input with Icons */
-.input-icon-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-icon-wrapper i {
-    position: absolute;
-    left: 15px;
-    color: #94a3b8;
-    font-size: 16px;
-}
-
-.input-icon-wrapper input {
-    width: 100%;
-    padding: 13px 15px 13px 45px; /* Space for icon */
-    border: 1.5px solid #cbd5e1;
-    border-radius: 10px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    background: #f8fafc;
-}
-
-.input-icon-wrapper input:focus {
-    border-color: #38bdf8;
-    background: white;
-    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
-    outline: none;
-}
-
-/* Remember me & Forgot Password */
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    font-size: 13px;
-    color: #64748b;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-}
-
-.form-options a {
-    color: #0284c7;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.form-options a:hover {
-    text-decoration: underline;
-}
-
-/* Login Button */
-.btn-primary {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(to right, #0284c7, #38bdf8);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
 }
 
 /* =========================================
-   DASHBOARD & OTHER PAGES STYLES
+   SIDEBAR STYLES
    ========================================= */
-
 .sidebar {
     width: 260px;
-    height: 100vh;
-    background: #1e293b;
+    background: #1e293b; /* Dark blue */
     color: white;
-    position: fixed;
     padding-top: 20px;
+    flex-shrink: 0;
 }
 
 .sidebar h2 {
@@ -187,6 +32,7 @@ body {
     color: #38bdf8;
     margin-bottom: 30px;
     font-weight: 600;
+    font-size: 22px;
 }
 
 .sidebar a {
@@ -198,64 +44,162 @@ body {
     transition: 0.3s;
 }
 
-.sidebar a:hover {
+.sidebar a:hover, .sidebar a.active {
     background: #334155;
     color: white;
     border-left: 4px solid #38bdf8;
 }
 
+.sidebar a i {
+    width: 25px;
+}
+
+/* =========================================
+   MAIN CONTENT & NAVBAR
+   ========================================= */
 .main-content {
-    margin-left: 260px;
+    flex: 1;
     padding: 40px;
+}
+
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 8px 15px;
+    border-radius: 8px;
+    width: 300px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
 }
 
 h1 {
     color: #1e293b;
     font-size: 28px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.card-container {
-    display: flex;
+/* =========================================
+   DASHBOARD CARDS & STATS
+   ========================================= */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 30px;
 }
 
-.card {
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 4px solid transparent;
+}
+
+.stat-card.blue { border-top-color: #0284c7; }
+.stat-card.green { border-top-color: #16a34a; }
+.stat-card.orange { border-top-color: #ea580c; }
+.stat-card.red { border-top-color: #dc2626; }
+.stat-card.purple { border-top-color: #9333ea; }
+
+.stat-card i {
+    font-size: 30px;
+    color: #64748b;
+}
+
+.stat-card h3 {
+    font-size: 24px;
+    color: #1e293b;
+}
+
+.stat-card p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* =========================================
+   SECTIONS, LISTS & TABLES
+   ========================================= */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.section-box {
     background: white;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    flex: 1;
-    min-width: 250px;
-    border-top: 5px solid #38bdf8;
-    transition: 0.3s;
+    margin-bottom: 20px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.card h3 {
+.section-box h2 {
+    font-size: 18px;
     color: #1e293b;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
 }
 
-.card p {
-    color: #64748b;
-    font-size: 14px;
-    margin-bottom: 5px;
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f1f5f9;
 }
 
+.icon-box {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.icon-box.blue { background: #e0f2fe; color: #0284c7; }
+.icon-box.orange { background: #ffedd5; color: #ea580c; }
+.icon-box.purple { background: #f3e8ff; color: #9333ea; }
+
+.item-details h4 { margin: 0; font-size: 15px; color: #1e293b; }
+.item-details p { margin: 5px 0 0 0; font-size: 13px; color: #64748b; }
+
+/* Tables (Results & Teacher Dashboard) */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: 10px;
 }
 
 th, td {
@@ -265,7 +209,93 @@ th, td {
 }
 
 th {
-    background-color: #1e293b;
-    color: white;
-    font-weight: 500;
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 14px;
 }
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+.btn-primary {
+    background: #38bdf8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-primary:hover { background: #0284c7; }
+
+.btn-sm {
+    padding: 8px 15px;
+    background: #0284c7;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-sm:hover { background: #0369a1; }
+
+/* Login Page Styles */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #38bdf8 100%);
+    width: 100%;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 400px;
+}
+/* =========================================
+   AUTHENTICATION (LOGIN/SIGNUP) STYLES
+   ========================================= */
+.login-header { text-align: center; margin-bottom: 30px; }
+.login-header h2 { color: #0f172a; font-size: 24px; margin-bottom: 5px; font-weight: 600; }
+.login-header p { color: #64748b; font-size: 14px; }
+
+.logo-circle {
+    width: 65px; height: 65px;
+    background: linear-gradient(to right, #0284c7, #38bdf8);
+    color: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 30px; margin: 0 auto 15px auto;
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; margin-bottom: 8px; color: #334155; font-weight: 500; font-size: 14px; }
+.required { color: #ef4444; margin-left: 3px; font-size: 16px; }
+
+.input-icon-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon-wrapper i { position: absolute; left: 15px; color: #94a3b8; font-size: 16px; }
+.input-icon-wrapper input {
+    width: 100%; padding: 13px 15px 13px 45px;
+    border: 1.5px solid #cbd5e1; border-radius: 10px;
+    font-size: 14px; transition: all 0.3s ease; background: #f8fafc;
+}
+.input-icon-wrapper input:focus {
+    border-color: #38bdf8; background: white;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15); outline: none;
+}
+.form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-size: 13px; color: #64748b; }
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard - LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2><i class="fas fa-graduation-cap"></i> LMS Student</h2>
+        <a href="/student/dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-book"></i> My Courses</a>
+        <a href="#"><i class="fas fa-folder-open"></i> Study Materials</a>
+        <a href="#"><i class="fas fa-file-alt"></i> Assignments</a>
+        <a href="#"><i class="fas fa-poll"></i> Quizzes</a>
+        <a href="#"><i class="fas fa-chart-line"></i> My Results</a>
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search courses, notes...">
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-bell"></i>
+                <span>Welcome, {{ student.name }}</span>
+            </div>
+        </div>
+
+        <h1>Welcome back, {{ student.name }}!</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">Roll No: {{ student.roll_no }}</p>
+        
+        <!-- Stats Cards -->
+        <div class="dashboard-stats">
+            <div class="stat-card blue">
+                <i class="fas fa-book-open"></i>
+                <div><h3>{{ student.enrolled_courses }}</h3><p>Enrolled Courses</p></div>
+            </div>
+            <div class="stat-card orange">
+                <i class="fas fa-tasks"></i>
+                <div><h3>{{ student.pending_assignments }}</h3><p>Pending Assignments</p></div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left Column: Courses & Assignments -->
+            <div class="left-column">
+                <!-- Enrolled Courses -->
+                <div class="section-box">
+                    <h2><i class="fas fa-book text-blue"></i> My Enrolled Courses</h2>
+                    {% for course in courses %}
+                    <div class="list-item">
+                        <div class="icon-box blue"><i class="fas fa-laptop-code"></i></div>
+                        <div class="item-details">
+                            <h4>{{ course.title }}</h4>
+                            <p>Instructor: {{ course.instructor }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Assignments -->
+                <div class="section-box mt-20">
+                    <h2><i class="fas fa-file-alt text-orange"></i> Assignments & Deadlines</h2>
+                    {% for assignment in assignments %}
+                    <div class="list-item">
+                        <div class="icon-box orange"><i class="fas fa-file-pdf"></i></div>
+                        <div class="item-details">
+                            <h4>{{ assignment.title }}</h4>
+                            <p>Course: {{ assignment.course }} | Due: {{ assignment.deadline }}</p>
+                        </div>
+                        <a href="#" class="btn-sm">Submit</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Right Column: Materials, Quizzes & Results -->
+            <div class="right-column">
+                <!-- Materials -->
+                <div class="section-box">
+                    <h2><i class="fas fa-folder-open text-green"></i> Study Materials</h2>
+                    {% for material in materials %}
+                    <div class="list-item">
+                        <i class="fas fa-file-alt text-blue" style="font-size:20px; margin-right:10px;"></i>
+                        <div class="item-details">
+                            <h4>{{ material.title }}</h4>
+                            <p>{{ material.course }} ({{ material.type }})</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Quizzes -->
+                <div class="section-box mt-20">
+                    <h2><i class="fas fa-poll text-purple"></i> Available Quizzes</h2>
+                    {% for quiz in quizzes %}
+                    <div class="list-item">
+                        <div class="item-details">
+                            <h4>{{ quiz.title }}</h4>
+                            <p>{{ quiz.course }}</p>
+                        </div>
+                        <a href="#" class="btn-sm" style="background:#9333ea;">Attempt</a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Results & Feedback -->
+                <div class="section-box mt-20">
+                    <h2><i class="fas fa-chart-line text-blue"></i> Recent Results & Feedback</h2>
+                    {% for result in results %}
+                    <div class="list-item">
+                        <div class="item-details">
+                            <h4>{{ result.assessment }} <span class="badge" style="background:#dcfce7; color:#16a34a; margin-left: 10px;">{{ result.marks }}</span></h4>
+                            <p style="font-style: italic; color: #64748b;">"{{ result.feedback }}"</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

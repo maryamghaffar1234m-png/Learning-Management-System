@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ course['title'] }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2><i class="fas fa-graduation-cap"></i> LMS Admin</h2>
+        <a href="/courses"><i class="fas fa-arrow-left"></i> Back to Courses</a>
+    </div>
+    <div class="main-content">
+        <h1>{{ course['title'] }}</h1>
+        <p style="color: #64748b; font-size: 16px;"><strong>Instructor:</strong> {{ course['teacher_name'] }}</p>
+        <p style="margin-top: 10px; margin-bottom: 30px;">{{ course['description'] }}</p>
+
+        <div class="content-grid">
+            <!-- Left: Materials -->
+            <div class="left-column">
+                <div class="section-box">
+                    <h2><i class="fas fa-folder-open text-blue"></i> Study Materials</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        {% for material in materials %}
+                        <li style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-file-pdf text-orange" style="font-size: 20px;"></i>
+                            <span><strong>{{ material['title'] }}</strong> ({{ material['file_type'] }})</span>
+                        </li>
+                        {% else %}
+                        <p style="color: #64748b;">No materials uploaded yet.</p>
+                        {% endfor %}
+                    </ul>
+
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                    
+                    <h3>Upload New Material</h3>
+                    <form action="/courses/{{ course['id'] }}/upload" method="POST" style="display: flex; gap: 10px; margin-top: 10px;">
+                        <input type="text" name="material_title" placeholder="Material Title" required style="flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px;">
+                        <select name="file_type" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px;">
+                            <option value="PDF">PDF</option>
+                            <option value="Video">Video</option>
+                            <option value="Doc">Doc</option>
+                        </select>
+                        <button type="submit" class="btn-sm" style="background:#0284c7; border:none; cursor:pointer;">Upload</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right: Enrollments -->
+            <div class="right-column">
+                <div class="section-box">
+                    <h2><i class="fas fa-users text-green"></i> Enrolled Students</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        {% for student in enrollments %}
+                        <li style="padding: 10px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px;">
+                            <div class="icon-box blue" style="width:30px; height:30px; font-size:14px;"><i class="fas fa-user"></i></div>
+                            <strong>{{ student['student_name'] }}</strong>
+                        </li>
+                        {% else %}
+                        <p style="color: #64748b;">No students enrolled yet.</p>
+                        {% endfor %}
+                    </ul>
+
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+                    
+                    <h3>Enroll Student</h3>
+                    <form action="/courses/{{ course['id'] }}/enroll" method="POST" style="display: flex; gap: 10px; margin-top: 10px;">
+                        <input type="text" name="student_name" placeholder="Student Name" required style="flex: 1; padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px;">
+                        <button type="submit" class="btn-sm" style="background:#16a34a; border:none; cursor:pointer;">Enroll</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

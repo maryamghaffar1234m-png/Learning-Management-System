@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard - LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2><i class="fas fa-chalkboard-teacher"></i> LMS Teacher</h2>
+        <a href="/teacher/dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-book"></i> Manage Courses</a>
+        <a href="#"><i class="fas fa-folder-plus"></i> Upload Materials</a>
+        <a href="#"><i class="fas fa-file-signature"></i> Assignments</a>
+        <a href="#"><i class="fas fa-poll"></i> Quizzes</a>
+        <a href="#"><i class="fas fa-check-circle"></i> Grading</a>
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search students, assignments...">
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-bell"></i>
+                <span>Welcome, Prof. {{ teacher.name }}</span>
+            </div>
+        </div>
+
+        <h1>Welcome back, Prof. {{ teacher.name }}!</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">Department: {{ teacher.department }}</p>
+        
+        <!-- Stats Cards -->
+        <div class="dashboard-stats">
+            <div class="stat-card blue">
+                <i class="fas fa-book"></i>
+                <div><h3>{{ teacher.total_courses }}</h3><p>My Courses</p></div>
+            </div>
+            <div class="stat-card green">
+                <i class="fas fa-users"></i>
+                <div><h3>{{ teacher.total_students }}</h3><p>Total Students</p></div>
+            </div>
+            <div class="stat-card orange">
+                <i class="fas fa-file-signature"></i>
+                <div><h3>{{ submissions|length }}</h3><p>To Grade</p></div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left Column: Manage Courses & Submissions -->
+            <div class="left-column">
+                <!-- Manage Courses -->
+                <div class="section-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 20px;">
+                        <h2 style="border: none; margin: 0; padding: 0;"><i class="fas fa-book text-blue"></i> My Courses</h2>
+                        <a href="#" class="btn-sm">+ Add Course</a>
+                    </div>
+                    {% for course in courses %}
+                    <div class="list-item">
+                        <div class="icon-box blue"><i class="fas fa-laptop-code"></i></div>
+                        <div class="item-details">
+                            <h4>{{ course.title }}</h4>
+                            <p>{{ course.students }} Students | Status: {{ course.status }}</p>
+                        </div>
+                        <a href="#" class="btn-sm" style="background:#64748b;"><i class="fas fa-edit"></i> Manage</a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Submissions to Grade -->
+                <div class="section-box mt-20">
+                    <h2><i class="fas fa-check-circle text-orange"></i> Submissions to Grade</h2>
+                    {% for sub in submissions %}
+                    <div class="list-item">
+                        <div class="icon-box orange"><i class="fas fa-file-alt"></i></div>
+                        <div class="item-details">
+                            <h4>{{ sub.assessment }}</h4>
+                            <p>Student: {{ sub.student }} | Course: {{ sub.course }}</p>
+                        </div>
+                        <a href="#" class="btn-sm" style="background:#16a34a;">Grade Now</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Right Column: Quick Actions & Feedback -->
+            <div class="right-column">
+                <!-- Quick Actions -->
+                <div class="section-box">
+                    <h2><i class="fas fa-bolt text-purple"></i> Quick Actions</h2>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                        <a href="#" style="text-decoration: none; padding: 15px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; color: #1e293b; display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-upload text-blue" style="font-size: 20px;"></i>
+                            <span><strong>Upload Material</strong><br><span style="font-size: 12px; color: #64748b;">Share notes or files</span></span>
+                        </a>
+                        <a href="#" style="text-decoration: none; padding: 15px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; color: #1e293b; display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-plus-circle text-green" style="font-size: 20px;"></i>
+                            <span><strong>Create Assignment</strong><br><span style="font-size: 12px; color: #64748b;">Set deadlines for students</span></span>
+                        </a>
+                        <a href="#" style="text-decoration: none; padding: 15px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; color: #1e293b; display: flex; align-items: center; gap: 15px;">
+                            <i class="fas fa-question-circle text-orange" style="font-size: 20px;"></i>
+                            <span><strong>Create Quiz</strong><br><span style="font-size: 12px; color: #64748b;">Add questions and marks</span></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Feedback -->
+                <div class="section-box mt-20">
+                    <h2><i class="fas fa-comment-dots text-blue"></i> Recent Feedback Given</h2>
+                    {% for item in feedback %}
+                    <div class="list-item">
+                        <div class="item-details">
+                            <h4>{{ item.student }}</h4>
+                            <p style="font-style: italic; color: #64748b;">"{{ item.comment }}"</p>
+                            <span style="font-size: 11px; color: #94a3b8;">{{ item.date }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

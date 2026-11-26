@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results & Feedback - LMS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2><i class="fas fa-chart-line"></i> LMS Results</h2>
+        <a href="/student/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/results" class="active"><i class="fas fa-poll"></i> My Results</a>
+        <a href="#"><i class="fas fa-comment-dots"></i> Feedback</a>
+        <a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search courses...">
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-bell"></i>
+                <span>{{ student.name }} ({{ student.roll_no }})</span>
+            </div>
+        </div>
+
+        <h1>Academic Results & Feedback</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">Semester: {{ student.semester }}</p>
+        
+        <!-- Stats Cards -->
+        <div class="dashboard-stats">
+            <div class="stat-card blue">
+                <i class="fas fa-star"></i>
+                <div><h3>{{ total_obtained }} / {{ total_max }}</h3><p>Total Marks</p></div>
+            </div>
+            <div class="stat-card green">
+                <i class="fas fa-percentage"></i>
+                <div><h3>{{ percentage }}%</h3><p>Overall Percentage</p></div>
+            </div>
+            <div class="stat-card purple">
+                <i class="fas fa-award"></i>
+                <div><h3>{% if percentage >= 80 %}A{% elif percentage >= 70 %}B{% elif percentage >= 60 %}C{% else %}D{% endif %}</h3><p>Current Grade</p></div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left Column: Assessment Marks -->
+            <div class="left-column">
+                <div class="section-box">
+                    <h2><i class="fas fa-clipboard-list text-blue"></i> Assessment Marks</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Assessment</th>
+                                <th>Marks</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in results %}
+                            <tr>
+                                <td><strong>{{ row.course }}</strong></td>
+                                <td>{{ row.assessment }}</td>
+                                <td>{{ row.obtained }} / {{ row.total }}</td>
+                                <td>
+                                    {% set p = (row.obtained / row.total * 100)|round %}
+                                    <span class="badge {% if p >= 80 %}bg-green{% elif p >= 60 %}bg-orange{% else %}bg-red{% endif %}" style="padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                                        {{ p }}%
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Column: Teacher Feedback -->
+            <div class="right-column">
+                <div class="section-box">
+                    <h2><i class="fas fa-comment-alt text-purple"></i> Teacher Feedback</h2>
+                    {% for fb in feedbacks %}
+                    <div class="list-item" style="display: block; padding-bottom: 15px; border-bottom: 1px solid #f1f5f9; margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <h4 style="color: #1e293b; font-size: 15px;">{{ fb.course }}</h4>
+                            <span style="font-size: 12px; color: #64748b;"><i class="fas fa-user-tie"></i> {{ fb.teacher }}</span>
+                        </div>
+                        <p style="font-style: italic; color: #475569; background: #f8fafc; padding: 10px; border-left: 3px solid #9333ea; border-radius: 0 5px 5px 0; font-size: 14px;">
+                            "{{ fb.comment }}"
+                        </p>
+                    </div>
+                    {% else %}
+                    <p style="color: #64748b;">No feedback available yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

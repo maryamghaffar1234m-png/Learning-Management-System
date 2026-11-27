@@ -1,4 +1,10 @@
 import unittest
+import sys
+import os
+
+# Yeh line Python ko batati hai ke root folder ko dhoonde
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from run import app
 
 class TestLMSApp(unittest.TestCase):

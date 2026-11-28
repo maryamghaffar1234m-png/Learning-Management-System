@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for
 from backend.database import get_connection
 
 course_bp = Blueprint('courses', __name__)
 
-# 1. Read All (List)
+# 1. Read All (Course List)
 @course_bp.route('/courses')
 def list_courses():
     conn = get_connection()
@@ -11,7 +11,7 @@ def list_courses():
     conn.close()
     return render_template('courses/list.html', courses=courses)
 
-# 2. Create
+# 2. Create Course
 @course_bp.route('/courses/create', methods=['GET', 'POST'])
 def create_course():
     if request.method == 'POST':
@@ -28,7 +28,7 @@ def create_course():
         
     return render_template('courses/create.html')
 
-# 3. Update (Edit)
+# 3. Update Course (Edit)
 @course_bp.route('/courses/edit/<int:id>', methods=['GET', 'POST'])
 def edit_course(id):
     conn = get_connection()
@@ -47,7 +47,7 @@ def edit_course(id):
     conn.close()
     return render_template('courses/edit.html', course=course)
 
-# 4. Delete
+# 4. Delete Course
 @course_bp.route('/courses/delete/<int:id>', methods=['POST'])
 def delete_course(id):
     conn = get_connection()
@@ -56,7 +56,7 @@ def delete_course(id):
     conn.close()
     return redirect(url_for('courses.list_courses'))
 
-# 5. Course Detail & Materials & Enrollments
+# 5. Course Detail (View Materials & Enrolled Students)
 @course_bp.route('/courses/<int:id>')
 def course_detail(id):
     conn = get_connection()
